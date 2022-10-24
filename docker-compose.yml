@@ -1,0 +1,9 @@
+services:
+  postgres:
+      image: postgres:13-alpine
+      ports:
+        - 5432:5432
+      environment:
+        POSTGRES_DB: twitter_clone
+        POSTGRES_USER: app
+        POSTGRES_PASSWORD: app
