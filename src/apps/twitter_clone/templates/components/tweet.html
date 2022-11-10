@@ -1,0 +1,16 @@
+<div class="row p-2 gx-0 border-bottom">
+    <div class="col-1 p-1">
+        <img src="https://via.placeholder.com/150" alt="Image" class="rounded-circle w-75">
+    </div>
+    <div class="col-11">
+        <div class="row">
+            <p class="mb-1">
+                <span class="fw-bolder">{{ tweet.user.first_name }}</span>
+                <span class="text-secondary">@{{ tweet.user.username }} - {{ tweet.created_at }}</span>
+            </p>
+        </div>
+        <div class="row">
+            <p>{{ tweet.content|linebreaksbr }}</p>
+        </div>
+    </div>
+</div>

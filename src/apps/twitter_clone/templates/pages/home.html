@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+{% block title %}Homepage{% endblock %}
+{% block content %}
+    <p class="h3 fw-bold p-3">Home</p>
+    <hr>
+    {% for tweet in tweets %}
+        {% include 'components/tweet.html' with tweet=tweet %}
+    {% endfor %}
+{% endblock %}

@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
-{% block title %}Hello{% endblock %}
-{% block content %}
-    {% include 'nav.html' %}
+{% block body %}
+    <div class="row">
+        <div class="col-auto pe-0">
+            {% include 'nav.html' %}
+        </div>
+        <div class="col ps-0 pe-0 border-end">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
 {% endblock %}
