@@ -3,6 +3,22 @@
 {% block content %}
     <p class="h3 fw-bold p-3">Home</p>
     <hr>
+    {% if request.user.is_authenticated %}
+        <form class="gx-0 row p-3 border-5 border-bottom" method="POST" action="{% url 'create_tweet' %}">
+            {% csrf_token %}
+            <div class="col-1 p-1">
+                <img src="https://via.placeholder.com/150" alt="Image" class="rounded-circle w-75">
+            </div>
+            <div class="col-9">
+                {{ form.content }}
+            </div>
+            <div class="col-auto ms-5 d-flex align-items-center">
+                <button type="submit" class="btn btn-primary rounded-pill" value="Tweet">Tweet<i
+                        class="bi bi-send ms-2"></i>
+                </button>
+            </div>
+        </form>
+    {% endif %}
     {% for tweet in tweets %}
         {% include 'components/tweet.html' with tweet=tweet %}
     {% endfor %}
