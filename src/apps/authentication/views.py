@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 
+
 def log_in(request: HttpRequest) -> HttpResponse:
     if request.user.is_authenticated:
         return redirect('home')
@@ -19,6 +20,7 @@ def log_in(request: HttpRequest) -> HttpResponse:
     else:
         messages.error(request, 'Wrong credentials')
         return render(request, 'login.html')
+
 
 def log_out(request: HttpRequest) -> HttpResponse:
     logout(request)
