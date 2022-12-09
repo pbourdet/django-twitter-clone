@@ -1,9 +1,6 @@
-import sys
-
 from django.test import TestCase, Client
 from django.urls import reverse
 
-from apps.authentication.models import User
 from apps.twitter_clone.models import Tweet
 from .login_decorator import login_required
 

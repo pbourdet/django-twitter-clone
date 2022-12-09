@@ -11,3 +11,12 @@ start:
 	DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} ./.venv/bin/python src/manage.py migrate
 	DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} ./.venv/bin/python src/manage.py runserver
 
+pylint:
+	./.venv/bin/python ./.venv/bin/pylint src tests
+
+functional-tests:
+	DJANGO_SETTINGS_MODULE=project.settings.test ./.venv/bin/python src/manage.py test
+
+checks:
+	make pylint || true
+	make functional-tests
