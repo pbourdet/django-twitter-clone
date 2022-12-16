@@ -15,8 +15,16 @@ pylint:
 	./.venv/bin/python ./.venv/bin/pylint src tests
 
 functional-tests:
-	DJANGO_SETTINGS_MODULE=project.settings.test ./.venv/bin/python src/manage.py test
+	DJANGO_SETTINGS_MODULE=project.settings.test ./.venv/bin/python src/manage.py test --tag functional
+
+unit-tests:
+	DJANGO_SETTINGS_MODULE=project.settings.test ./.venv/bin/python src/manage.py test --tag unit
+
+all-tests:
+	make unit-tests
+	make functional-tests
 
 checks:
 	make pylint || true
+	make unit-tests
 	make functional-tests

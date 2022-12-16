@@ -14,7 +14,7 @@ class Tweet(models.Model):
 
 
 class Hashtag(models.Model):
-    name = models.TextField()
+    name = models.TextField(unique=True)
     tweets = models.ManyToManyField(Tweet)
 
     def __str__(self):

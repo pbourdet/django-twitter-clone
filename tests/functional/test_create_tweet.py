@@ -1,10 +1,11 @@
-from django.test import TestCase, Client
+from django.test import TestCase, Client, tag
 from django.urls import reverse
 
-from apps.twitter_clone.models import Tweet
+from apps.twitter_clone.models import Tweet, Hashtag
 from .login_decorator import login_required
 
 
+@tag('functional')
 class CreateTweetTestCase(TestCase):
     def setUp(self):
         self.client = Client()
@@ -24,8 +25,9 @@ class CreateTweetTestCase(TestCase):
         self.assertEqual(0, Tweet.objects.all().count())
 
     @login_required
-    def test_creation_(self):
-        response = self.client.post('/create_tweet', {'content': 'Tweet created'})
+    def test_creation(self):
+        response = self.client.post('/create_tweet', {'content': 'Tweet #created'})
 
         self.assertRedirects(response, '/')
         self.assertEqual(1, Tweet.objects.all().count())
+        self.assertEqual(1, Hashtag.objects.all().count())

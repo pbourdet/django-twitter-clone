@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from django.views.decorators.http import require_http_methods
 
+from .domain import hashtag
 from .forms import TweetForm
 from .models import Tweet
 
@@ -23,9 +24,11 @@ def create_tweet(request: HttpRequest) -> HttpResponse:
     tweet_form = TweetForm(request.POST or None)
 
     if tweet_form.is_valid():
-        Tweet.objects.create(
+        tweet = Tweet.objects.create(
             content=tweet_form.cleaned_data['content'],
             user=request.user
         )
+
+        hashtag.save_hashtags(tweet)
 
     return redirect('home')

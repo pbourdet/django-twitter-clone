@@ -1,8 +1,9 @@
-from django.test import TestCase, Client
+from django.test import TestCase, Client, tag
 
 from apps.authentication.models import User
 
 
+@tag('functional')
 class LoginTestCase(TestCase):
     def setUp(self):
         self.client = Client()
