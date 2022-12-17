@@ -1,0 +1,17 @@
+{% extends 'authentication_base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block form %}
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            {% include 'components/input.html' with field=field %}
+        {% endfor %}
+        <input type="submit" class="btn btn-primary" value="Login"/>
+    </form>
+    <hr/>
+    <div>
+        <a class="btn btn-primary" href="{% url 'register' %}" role="button">Register</a>
+    </div>
+{% endblock %}

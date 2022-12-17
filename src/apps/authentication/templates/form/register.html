@@ -1,0 +1,13 @@
+{% extends 'authentication_base.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block form %}
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            {% include 'components/input.html' with field=field %}
+        {% endfor %}
+        <input type="submit" class="btn btn-primary" value="Register"/>
+    </form>
+{% endblock %}
