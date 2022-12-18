@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+{% block title %}{% if hashtag is None %}Oops...{% else %}#{{ hashtag.name }}{% endif %}{% endblock %}
+{% block content %}
+    <p class="h3 fw-bold p-3">{% if hashtag is None %}Oops...{% else %}#{{ hashtag.name }}{% endif %}</p>
+    <hr>
+    {% if hashtag is None %}
+        <p>Nothing matches your search...</p>
+    {% else %}
+        {% for tweet in hashtag.tweets.all %}
+            {% include 'components/tweet.html' with tweet=tweet %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

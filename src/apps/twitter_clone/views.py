@@ -3,9 +3,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from django.views.decorators.http import require_http_methods
 
-from .domain import hashtag
+from .domain import hashtag as hashtag_module
 from .forms import TweetForm
-from .models import Tweet
+from .models import Tweet, Hashtag
 
 
 @require_http_methods(['GET'])
@@ -29,6 +29,16 @@ def create_tweet(request: HttpRequest) -> HttpResponse:
             user=request.user
         )
 
-        hashtag.save_hashtags(tweet)
+        hashtag_module.save_hashtags(tweet)
 
     return redirect('home')
+
+
+@require_http_methods(['GET'])
+def hashtag_tweets(request: HttpRequest, hashtag_name: str) -> HttpResponse:
+    try:
+        hashtag = Hashtag.objects.get(name=hashtag_name)
+    except Hashtag.DoesNotExist:
+        hashtag = None
+
+    return render(request, 'pages/hashtag.html', {'hashtag': hashtag})
