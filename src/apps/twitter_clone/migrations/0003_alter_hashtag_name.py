@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('twitter_clone', '0002_hashtag'),
+        ("twitter_clone", "0002_hashtag"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='hashtag',
-            name='name',
+            model_name="hashtag",
+            name="name",
             field=models.TextField(unique=True),
         ),
     ]

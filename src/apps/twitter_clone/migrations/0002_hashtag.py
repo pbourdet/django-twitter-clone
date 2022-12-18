@@ -6,16 +6,24 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('twitter_clone', '0001_initial'),
+        ("twitter_clone", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Hashtag',
+            name="Hashtag",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.TextField()),
-                ('tweets', models.ManyToManyField(to='twitter_clone.tweet')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.TextField()),
+                ("tweets", models.ManyToManyField(to="twitter_clone.tweet")),
             ],
         ),
     ]

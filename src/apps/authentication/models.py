@@ -8,8 +8,8 @@ class User(AbstractUser):
     last_name = models.CharField(max_length=50)
     username = models.CharField(max_length=30, null=False, blank=False)
 
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name']
+    USERNAME_FIELD = "email"
+    REQUIRED_FIELDS = ["username", "first_name"]
 
     class Meta:
         db_table = "auth_user"

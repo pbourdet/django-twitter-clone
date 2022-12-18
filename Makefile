@@ -11,6 +11,9 @@ start:
 	DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} ./.venv/bin/python src/manage.py migrate
 	DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} ./.venv/bin/python src/manage.py runserver
 
+black:
+	./.venv/bin/python ./.venv/bin/black src tests
+
 pylint:
 	./.venv/bin/python ./.venv/bin/pylint src tests
 
@@ -25,6 +28,7 @@ all-tests:
 	make functional-tests
 
 checks:
+	make black || true
 	make pylint || true
 	make unit-tests
 	make functional-tests
