@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block body %}
     <div class="row">
-        <div class="col-auto pe-0">
+        <div class="col-auto position-fixed">
             {% include 'nav.html' %}
         </div>
-        <div class="col ps-0 pe-0 border-end">
+        <div class="col offset-2 pe-0 border-end">
             {% block content %}{% endblock %}
         </div>
     </div>

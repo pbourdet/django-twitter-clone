@@ -1,3 +1,5 @@
+{% load filters %}
+
 <div class="row p-2 gx-0 border-bottom">
     <div class="col-1 p-1">
         <img src="https://via.placeholder.com/150" alt="Image" class="rounded-circle w-75">
@@ -10,7 +12,7 @@
             </p>
         </div>
         <div class="row text-break">
-            <p>{{ tweet.content|linebreaksbr }}</p>
+            <p>{{ tweet.content|linebreaksbr|display_tweet|safe }}</p>
         </div>
     </div>
 </div>

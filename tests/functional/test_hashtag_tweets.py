@@ -21,4 +21,5 @@ class CreateTweetTestCase(TestCase):
     def test_hashtag_wit_tweets(self):
         response = self.client.get("/hashtag/test")
 
-        self.assertContains(response, "testing #test")
+        self.assertContains(response, "testing")
+        self.assertContains(response, 'href="/hashtag/test"')
