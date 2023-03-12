@@ -6,7 +6,7 @@
     {% if hashtag is None %}
         <p>Nothing matches your search...</p>
     {% else %}
-        {% for tweet in hashtag.tweets.all %}
+        {% for tweet in hashtag.tweets.all|dictsortreversed:"created_at" %}
             {% include 'components/tweet.html' with tweet=tweet %}
         {% endfor %}
     {% endif %}

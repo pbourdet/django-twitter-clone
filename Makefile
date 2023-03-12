@@ -11,6 +11,9 @@ start:
 	DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} ./.venv/bin/python src/manage.py migrate
 	DJANGO_SETTINGS_MODULE=${DJANGO_SETTINGS_MODULE} ./.venv/bin/python src/manage.py runserver
 
+celery:
+	cd src/ && DJANGO_SETTINGS_MODULE=project.settings.development celery -A project worker -l info
+
 black:
 	./.venv/bin/python ./.venv/bin/black src tests
 

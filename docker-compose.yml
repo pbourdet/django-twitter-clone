@@ -1,9 +1,23 @@
 services:
-  postgres:
-      image: postgres:13-alpine
-      ports:
-        - 5432:5432
-      environment:
-        POSTGRES_DB: twitter_clone
-        POSTGRES_USER: app
-        POSTGRES_PASSWORD: app
+    postgres:
+        image: postgres:13-alpine
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_DB: twitter_clone
+            POSTGRES_USER: app
+            POSTGRES_PASSWORD: app
+    mailhog:
+        container_name: mailhog
+        image: mailhog/mailhog
+        logging:
+            driver: 'none'
+        ports:
+            - "1025:1025"
+            - "8025:8025"
+    rabbitmq:
+        image: rabbitmq:3-management-alpine
+        container_name: 'rabbitmq'
+        ports:
+          - "5672:5672"
+          - "15672:15672"

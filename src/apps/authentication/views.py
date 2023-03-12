@@ -6,6 +6,7 @@ from django.views.decorators.http import require_http_methods
 
 from apps.authentication.forms import RegistrationForm, LoginForm
 from apps.authentication.models import User
+from apps.authentication.tasks import send_registration_email
 
 
 @require_http_methods(["GET", "POST"])
@@ -30,6 +31,7 @@ def log_in(request: HttpRequest) -> HttpResponse:
 @require_http_methods(["GET"])
 def log_out(request: HttpRequest) -> HttpResponse:
     logout(request)
+
     return redirect("home")
 
 
@@ -57,5 +59,7 @@ def register(request: HttpRequest) -> HttpResponse:
     user.set_password(cleaned_data["password"])
     user.save()
 
+    send_registration_email.delay(user.first_name, user.email)
     login(request, user)
+
     return redirect("home")
